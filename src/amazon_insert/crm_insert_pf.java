@@ -35,8 +35,7 @@ public class crm_insert_pf {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		// br_conf = new BufferedReader(fileReader_conf);
+		
 		br = new BufferedReader(fileReader);
 
 		PreparedStatement pst2 = null;
@@ -88,41 +87,35 @@ public class crm_insert_pf {
 			String line2;
 			while ((line2 = br.readLine()) != null) {
 				final String[] lineItem = line2.split(",");
-				String pf_code = "";
-				String pf_desc = "";
-
-				if (lineItem[1].equalsIgnoreCase("1")) { // PF_l
-					pf_code = "cell_bal";
-					pf_desc = "piller arasýndaki voltaj farký cok yuksek.";
-				}
-
-				else if (lineItem[1].equalsIgnoreCase("10")) { // PF_l
-					pf_code = "deep_dsg";
-					pf_desc = "Dusuk voltaj seviyesinden kaynakli hataya girmis";
-				}
-
-				else if (lineItem[1].equalsIgnoreCase("100")) { // PF_l
-					pf_code = "fet_fault ";
-					pf_desc = "FET HATASI";
-				}
-
-				else if (lineItem[1].equalsIgnoreCase("1000")) { // PF_l
-					pf_code = "cell_temp  ";
-					pf_desc = "Cok yuksek yada dusuk sicakliktan kaynakli hata";
-				} else if (lineItem[1].equalsIgnoreCase("10000")) { // PF_l
-					pf_code = "therm_fault  ";
-					pf_desc = "Cok yuksek yada dusuk sicakliktan kaynakli hata";
-				} else if (lineItem[1].equalsIgnoreCase("100000")) { // PF_l
-					pf_code = "over_chg  ";
-					pf_desc = "Over charge hatasindan kaynakli kalici hata";
-				} else if (lineItem[1].equalsIgnoreCase("1000000")) { // PF_l
-					pf_code = "usage_lmt  ";
-					pf_desc = "usage_lmt ";
-				} else if (lineItem[1].equalsIgnoreCase("10000000")) { // PF_l
-					pf_code = "other  ";
-					pf_desc = "other ";
-				}
-
+				PreparedStatement pst3 = null;
+        		try {
+        			pst3 = conn1.dbConn().prepareStatement("select safety_name from safety_table where (safety_number = 5 and safety_bin_str =  '"+lineItem[1]+"')");
+        			System.out.println("BEYTULLAH : "+lineItem[1]);
+        			System.out.println("pst3 : "+pst3);
+        		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e1) {
+        			// TODO Auto-generated catch block
+        			e1.printStackTrace();
+        		}
+                ResultSet rs3 = pst3.executeQuery();
+                String error_codew ="" ;
+                while(rs3.next())
+                {
+                	error_codew = rs3.getString(1);
+                }
+                               
+                PreparedStatement pst4 = null;
+        		try {
+        			pst4 = conn1.dbConn().prepareStatement("select error_solution from safety_table where (safety_number = 5 and safety_bin_str =  '"+lineItem[1]+"')");
+        		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e1) {
+        			// TODO Auto-generated catch block
+        			e1.printStackTrace();
+        		}
+                ResultSet rs4 = pst4.executeQuery();
+                String error_descw ="" ;
+                while(rs4.next())
+                {
+                	error_descw = rs4.getString(1);
+                }
 				// ----------------------------------------------------------------------------------------------------
 
 				st.setInt(1, user_id);
@@ -147,12 +140,10 @@ public class crm_insert_pf {
 				st.setString(20, lineItem[17]);
 				st.setString(21, lineItem[18]);
 				st.setString(22, lineItem[19]);
-				st.setString(23, pf_code);
-				st.setString(24, pf_desc);
+				st.setString(23, error_codew);
+				st.setString(24, error_descw);
 				user_id = user_id + 1;
-
-				// st.execute();
-				// System.out.println(st);
+				
 				st.addBatch();
 				if (++count % batchSize == 0) {
 					st.executeBatch();

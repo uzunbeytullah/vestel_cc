@@ -18,7 +18,12 @@ public class main {
 		crm_insert.crm_insert_amazon("mail_body.txt");
 
 		new crm_insert_protection();
-		crm_insert_protection.crm_insert_protection_amazon("pure_protect_log.txt");
+		try {
+			crm_insert_protection.crm_insert_protection_amazon("pure_protect_log.txt");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
 		new Pf_data_analiz(file_name);

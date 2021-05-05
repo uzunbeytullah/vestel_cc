@@ -95,95 +95,47 @@ public class crm_insert_protection {
                 final String[] lineItem = line2.split(",");
                 String error_code="";
                 String error_desc="";
-
-                if ( lineItem[9].equalsIgnoreCase("1") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="CUV";
-                	error_desc="Batarya paketini sarj edin ve sarj islemi tamamlanana kadar bekleyin";
-                }
-                else if ( lineItem[9] .equalsIgnoreCase("10") && lineItem[ 10 ] .equalsIgnoreCase("0") && lineItem[ 11 ] .equalsIgnoreCase("0") && lineItem[ 12 ] .equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="COV";
-                	error_desc="Batarya paketini sarj edin ve sarj islemi tamamlanana kadar bekleyin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("100")  && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0")   && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="OCC";
-                	error_desc="Sarj cihazi arizali olabilir veya 41V olana kadar desarj islemi uygulayin";                }
-                else if ( lineItem[9].equalsIgnoreCase("1000") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="OCD";
-                	error_desc="e-bisikleti kullanmayi durdurun ve hata durumu gostergesinin normale donmesini bekleyin. motor kablolarini kontrol edin ve kablo veya soket hasari gorurseniz e-bisiklet bayinizle iletisime gecin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("10000") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="AOLD";
-                	error_desc="e-bisikleti kullanmayi durdurun ve hata durumu gostergesinin normale donmesini bekleyin	";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("100000") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="AOLDL";
-                	error_desc="AOLDL	";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("1000000") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="ASCD";
-                	error_desc="e-bisikleti kullanmayi durdurun ve hata durumu gostergesinin normale donmesini bekleyin. sorun ortadan kalkmazsa e-bisiklet bayinizle iletisime gecin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("10000000") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_L
-                	error_code="ASCDL";
-                	error_desc="ASCDL";
-                }
-                //---------------------------------------------------------------
                 
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ] =="1" && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="OTC";
-                	error_desc="Calisma sicakligi araligina donene kadar batarya paketinin oda sicakliginda kalmasina izin verin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("10") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="OTD";
-                	error_desc="Calisma sicakligi araligina donene kadar batarya paketinin oda sicakliginda kalmasina izin verin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ] =="100" && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="UTC";
-                	error_desc="Calisma sicakligi araligina donene kadar batarya paketinin oda sicakliginda kalmasina izin verin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("1000") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="UTD";
-                	error_desc="Calisma sicakligi araligina donene kadar batarya paketinin oda sicakliginda kalmasina izin verin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("10000") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="AFE_OVRD";
-                	error_desc="yerel e-bisiklet bayinizle iletisime gecin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("100000") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="OTF";
-                	error_desc="Calisma sicakligi araligina donene kadar batarya paketinin oda sicakliginda kalmasina izin verin";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("1000000") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="OCDL";
-                	error_desc="OCDL";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("10000000") && lineItem[ 11 ].equalsIgnoreCase("0") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //v_cell_sync_H
-                	error_code="";
-                	error_desc="";
-                }
-                //-------------------------------------------------------------------
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ] =="1" && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //auth_nc_L
-                	error_code="PTO";
-                	error_desc="PTO";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("10") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //auth_nc_L
-                	error_code="";
-                	error_desc="";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ] =="100" && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //auth_nc_L
-                	error_code="CTO";
-                	error_desc="CTO";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("1000") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //auth_nc_L
-                	error_code="";
-                	error_desc="";
-                }
-                else if ( lineItem[9].equalsIgnoreCase("0") && lineItem[ 10 ].equalsIgnoreCase("0") && lineItem[ 11 ].equalsIgnoreCase("10000") && lineItem[ 12 ].equalsIgnoreCase("0")  ) { //auth_nc_L
-                	error_code="OC";
-                	error_desc="OC";
-                }
-               //----------------------------------------------------------------------------------------------------
                 
+                
+                
+                PreparedStatement pst3 = null;
+        		try {
+        			pst3 = conn1.dbConn().prepareStatement("select safety_name from safety_table where " + 
+        					"(safety_number = 1 and safety_bin_str =  '"+lineItem[ 9]+"'  and '"+lineItem[ 10]+"'=\"0\" and   '"+lineItem[ 11]+"' =\"0\"  and  '"+lineItem[ 12]+"'  =\"0\"   ) or " + 
+        					"(safety_number = 2 and safety_bin_str = '"+lineItem[ 10]+"'  and   '"+lineItem[ 9]+"'=\"0\" and   '"+lineItem[ 11]+"' =\"0\"  and  '"+lineItem[ 12]+"' =\"0\"    ) or " + 
+        					"(safety_number = 3 and safety_bin_str = '"+lineItem[ 11]+"'  and '"+lineItem[ 9]+"'=\"0\" and   '"+lineItem[ 10]+"' =\"0\"  and  '"+lineItem[ 12]+"' =\"0\"    ) or " + 
+        					"(safety_number = 4 and safety_bin_str =  '"+lineItem[ 12]+"'  and '"+lineItem[ 10]+"'=\"0\" and  '"+lineItem[ 11]+"'  =\"0\"  and  '"+lineItem[ 9]+"' =\"0\"     )  ");
+        		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e1) {
+        			// TODO Auto-generated catch block
+        			e1.printStackTrace();
+        		}
+                ResultSet rs3 = pst3.executeQuery();
+                String error_codew ="" ;
+                while(rs3.next())
+                {
+                	error_codew = rs3.getString(1);
+                }
+                               
+                PreparedStatement pst4 = null;
+        		try {
+        			pst4 = conn1.dbConn().prepareStatement("select error_solution from safety_table where " + 
+        					"(safety_number = 1 and safety_bin_str =  '"+lineItem[ 9]+"'  and '"+lineItem[ 10]+"'=\"0\" and   '"+lineItem[ 11]+"' =\"0\"  and  '"+lineItem[ 12]+"'  =\"0\"   ) or " + 
+        					"(safety_number = 2 and safety_bin_str = '"+lineItem[ 10]+"'  and   '"+lineItem[ 9]+"'=\"0\" and   '"+lineItem[ 11]+"' =\"0\"  and  '"+lineItem[ 12]+"' =\"0\"    ) or " + 
+        					"(safety_number = 3 and safety_bin_str = '"+lineItem[ 11]+"'  and '"+lineItem[ 9]+"'=\"0\" and   '"+lineItem[ 10]+"' =\"0\"  and  '"+lineItem[ 12]+"' =\"0\"    ) or " + 
+        					"(safety_number = 4 and safety_bin_str =  '"+lineItem[ 12]+"'  and '"+lineItem[ 10]+"'=\"0\" and  '"+lineItem[ 11]+"'  =\"0\"  and  '"+lineItem[ 9]+"' =\"0\"     )  ");
+        		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e1) {
+        			// TODO Auto-generated catch block
+        			e1.printStackTrace();
+        		}
+                ResultSet rs4 = pst4.executeQuery();
+                String error_descw ="" ;
+                while(rs4.next())
+                {
+                	error_descw = rs4.getString(1);
+                }
+                
+                                
                 st.setInt (1, user_id);
                 st.setString( 2 , crm_id);
                 st.setString( 3 , lineItem[ 0 ]);
@@ -201,12 +153,10 @@ public class crm_insert_protection {
                 st.setString( 15 , lineItem[ 12 ]);
                 st.setString( 16 , lineItem[ 13 ]);
                 st.setString( 17 , lineItem[ 14 ]);
-                st.setString( 18 , error_code);
-                st.setString( 19 , error_desc);
+                st.setString( 18 , error_codew);
+                st.setString( 19 , error_descw);
                 user_id=user_id+1;
                 
-     
-
                // st.execute();
                 //System.out.println(st);
                 st.addBatch();
